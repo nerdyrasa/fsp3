@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}geek catalog{% endblock %}
+{%  include 'header.html' %}
+{% block page_content %}
+
+<div class="container">
+
+    <h2> Are you sure you want to delete {{ name }}? </h2>
+
+    <form action="#" method = 'post'>
+        <button type="submit" class="btn btn-default delete" id="submit" type="submit">Delete</button>
+        <a href = '{{url_for('show_categories')}}' class="btn btn-default">Cancel</a>
+    </form>
+
+
+</div> <!-- /container -->
+
+{% endblock %}

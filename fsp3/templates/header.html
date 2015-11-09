@@ -1,0 +1,31 @@
+<div class="row top-menu">
+	<div class="col-md-6">
+		<a href="{{url_for('show_categories')}}">
+			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>Show All Categories
+		</a>
+	</div>
+	<div class="col-md-5 text-right">
+        {%  if not g.name %}
+            <a href="{{ url_for('showLogin') }}">Login</a>
+        {%  else %}
+            {% if g.gplus %}
+                <a href="{{ url_for('gdisconnect') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('fbdisconnect') }}">Logout</a>
+            {% endif %}
+        {% endif %}
+	</div>
+</div>
+<div class="row">
+<div class ="col-md-12 flash divider blue">
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+      <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+       </ul>
+    {% endif %}
+{% endwith %}
+</div>
+</div>

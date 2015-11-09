@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}geek catalog{% endblock %}
+{%  include 'header.html' %}
+{% block page_content %}
+    <div class="container">
+	    <div class="row">
+		{% for category in categories %}
+            <div class="col-md-4">
+                <a href="{{url_for('items',category_id=category.id)}}" class="thumbnail">
+                    <img class="img-responsive" src="/static/images/{{category.image}}" height=100 width=150 alt="{{category.name}}">
+                {{category.name}}</a>
+            </div>
+		{% endfor %}
+	    </div>
+    </div> <!-- /container -->
+{% endblock %}
