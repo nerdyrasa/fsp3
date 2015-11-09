@@ -20,7 +20,7 @@ The following directions assume you have virtualbox and vagrant installed and ar
 
 In git bash:
 
-    git clone 
+    git clone https://github.com/rozisaacson/fsp3.git
     cd /vagrant
     vagrant up
     vagrant ssh
