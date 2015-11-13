@@ -14,6 +14,7 @@ from wtforms import FileField, SubmitField, StringField, TextAreaField, Validati
 from catalog_db_setup import Base, Category, CategoryItem, User
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
+from oauth2client import client
 import httplib2
 import json
 from flask import make_response
@@ -258,7 +259,11 @@ def gconnect():
         return response
 
     # Store the access token in the session for later use.
-    login_session['credentials'] = credentials
+    # Store only credentials.access_token, not credentials
+    # see http://stackoverflow.com/questions/22915461/google-login-server-side-flow-storing-credentials-python-examples
+
+    login_session['credentials'] = credentials.access_token
+    # login_session['credentials'] = credentials
 
     login_session['gplus_id'] = gplus_id
     print ('login credentials = {}'.format(login_session['credentials']))
@@ -322,7 +327,14 @@ def getUserID(email):
 def gdisconnect():
     # Only disconnect a connected user.
     print("gdisconnect")
-    credentials = login_session.get('credentials')
+
+    credentials = client.AccessTokenCredentials(
+        login_session.get('credentials'),
+        'user-agent-value'
+    )
+
+    #credentials = AccessTokenCredentials(session['credentials'], 'user-agent-value')
+    #credentials = login_session.get('credentials')
 
     if credentials is None:
         response = make_response(

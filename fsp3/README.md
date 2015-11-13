@@ -25,9 +25,6 @@ In git bash:
     vagrant up
     vagrant ssh
     cd /vagrant
-    sudo pip install werkzeug==0.8.3
-    sudo pip install flask==0.9
-    sudo pip install Flask-Login==0.1.3
     sudo pip install Flask-Bootstrap--3.3.5.7
     sudo pip install Flask-wtf==0.1.2
     cd fsp3
